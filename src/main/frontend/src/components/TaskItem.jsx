@@ -8,8 +8,8 @@ const TaskItem = (props) => {
 
     useEffect(() => {
         if(isModified){
-            fetch(
-                `http://localhost:8080/api/v1/tasks/update/${taskItem.id}`, {
+            fetch(`http://localhost:8080/api/v1/tasks/update/${taskItem.id}`,
+            {
                 method : "PUT",
                 body: JSON.stringify(taskItem),
                 headers: {
@@ -25,11 +25,10 @@ const TaskItem = (props) => {
     }
 
     function deleteTask () {
-        fetch(
-            `http://localhost:8080/api/v1/tasks/delete/${taskItem.id}`, {
-                method : "DELETE"
-            }
-        ).then((response) => response.json)
+        fetch(`http://localhost:8080/api/v1/tasks/delete/${taskItem.id}`,
+        {
+            method : "DELETE"
+        }).then((response) => response.json)
         .then((data) => {
             deleteTaskItem(taskItem);
         });
