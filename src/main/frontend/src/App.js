@@ -1,46 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
-
-const Tasks = () => {
-
-  const [tasks, setTasks] = useState([]);
-
-  const fetchTasks = () => {
-    axios.get("http://localhost:8080/api/v1/tasks/all").then(res =>{
-      setTasks(res.data);
-    })
-  }
-
-  const deleteTask = (id) => {
-    const formData = new FormData();
-    formData.append("id", id);
-    axios.delete(
-      `http://localhost:8080/api/v1/tasks/delete/${id}`,
-      {
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }
-      },
-      formData
-      )
-  }
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
-  return tasks.map((task, index) => {
-    return (
-      <div key={index}>
-        <h1>{task.id}</h1>
-        <p>{task.text}</p>
-        <button>Delete</button>
-      </div>
-    )
-  })
-};
+import TaskItem from './components/TaskItem';
 
 const CreateTask = () => {
 
@@ -74,12 +35,32 @@ const CreateTask = () => {
 }
 
 function App() {
+
+  const [tasks, setTasks] = useState(null);
+
+  useEffect(() => {
+    if(!tasks){
+      axios.get("http://localhost:8080/api/v1/tasks/all").then(res =>{
+        setTasks(res.data);
+      })
+    }
+    
+  }, [tasks]);
+
+  function handleDeleteTaskItem (item){
+    const taskItems = tasks.filter(task => task.id !== item.id)
+    setTasks([...taskItems])
+  }
+
   return (
-    <div className="App">
+    <div>
       <CreateTask/>
-      <Tasks/>
+      {tasks 
+        ? tasks.map((task) => {
+          return <TaskItem key={task.id} data={task} deleteTaskItem={handleDeleteTaskItem}/>}) 
+        : "Loading data..."}
     </div>
-  );
+    )
 }
 
 export default App;
