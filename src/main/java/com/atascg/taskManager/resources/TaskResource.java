@@ -4,9 +4,7 @@ import com.atascg.taskManager.dao.TaskDAO;
 import com.atascg.taskManager.domain.Task;
 import io.dropwizard.hibernate.UnitOfWork;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -27,6 +25,23 @@ public class TaskResource {
     @UnitOfWork
     public List<Task> getTasks() {
         return taskDAO.findAll();
+    }
+
+    @DELETE
+    @Path("/delete/{id}")
+    @UnitOfWork
+    public void deleteTaskById(@PathParam("id") long id) {
+        taskDAO.deleteById(id);
+    }
+
+    @POST
+    @Path("/create/{text}")
+    @UnitOfWork
+    public void createTask(@PathParam("text") String text) {
+        Task task = new Task();
+        task.setText(text);
+        task.setCompleted(false);
+        taskDAO.save(task);
     }
 
 //    @GET

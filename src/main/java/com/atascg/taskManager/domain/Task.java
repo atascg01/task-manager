@@ -20,6 +20,9 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "text")
+    @Column
     private String text;
+
+    @Column
+    private boolean completed;
 }

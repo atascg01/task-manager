@@ -20,4 +20,13 @@ public class TaskDAO extends AbstractDAO<Task> {
     public Optional<Task> findById(long id) {
         return Optional.ofNullable(get(id));
     }
+
+    public void save(Task task) {
+        currentSession().save(task);
+    }
+
+    public void deleteById(long id) {
+        Task task = findById(id).orElse(null);
+        currentSession().delete(task);
+    }
 }
