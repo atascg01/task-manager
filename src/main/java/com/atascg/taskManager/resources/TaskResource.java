@@ -27,6 +27,13 @@ public class TaskResource {
         return taskDAO.findAll();
     }
 
+    @PUT
+    @Path("/update/{id}")
+    @UnitOfWork
+    public void updateTask(@PathParam("id") long id, Task task) {
+        taskDAO.updateById(id, task);
+    }
+
     @DELETE
     @Path("/delete/{id}")
     @UnitOfWork

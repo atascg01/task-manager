@@ -25,6 +25,12 @@ public class TaskDAO extends AbstractDAO<Task> {
         currentSession().save(task);
     }
 
+    public void updateById(long id, Task task) {
+        Task databaseTask = findById(id).orElse(new Task());
+        databaseTask.setText(task.getText());
+        databaseTask.setCompleted(task.isCompleted());
+    }
+
     public void deleteById(long id) {
         Task task = findById(id).orElse(null);
         currentSession().delete(task);
