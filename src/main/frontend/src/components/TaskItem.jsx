@@ -36,9 +36,9 @@ const TaskItem = (props) => {
 
     return (
         <div>
-            <input type="checkbox" checked={taskItem.completed} onChange={updateTask}></input>
-            <span>{taskItem.text}</span>
-            <button onClick={deleteTask}>Delete</button>
+            <input type="checkbox" style={{marginLeft: "1rem", width: "25px", height: "25px"}} checked={taskItem.completed} onChange={updateTask}></input>
+            <span className={taskItem.completed ? 'completed' : ''} style={{marginLeft: "1rem"}}>{taskItem.text}</span>
+            <button id="deleteButton" style={{marginLeft: "1rem"}} onClick={deleteTask}>🗑️</button>
         </div>
     );
 };

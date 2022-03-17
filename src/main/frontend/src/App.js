@@ -26,12 +26,18 @@ function App() {
   }
 
   return (
-    <div>
-      <TaskForm addTaskItem={handleAddTaskItem}/>
-      {tasks 
-        ? tasks.map((task) => {
-          return <TaskItem key={task.id} data={task} deleteTaskItem={handleDeleteTaskItem}/>}) 
-        : "Loading data..."}
+    <div id="appDiv">
+      <div class="header">
+        <h1>Task Manager</h1>
+      </div>
+      <div id="app">
+        <TaskForm addTaskItem={handleAddTaskItem}/>
+        {tasks 
+          ? tasks.map((task) => {
+            return <TaskItem key={task.id} data={task} deleteTaskItem={handleDeleteTaskItem}/>}) 
+          : "Loading data..."}
+      </div>
+      
     </div>
     )
 }

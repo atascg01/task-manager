@@ -12,24 +12,17 @@ const TaskForm = (props) => {
             method : "POST",
             body: JSON.stringify(text),
             headers: {
-                "Accept": "application/json",
                 "Content-Type": "application/json"
             }
         }
-      ).then(response => response.json)
-      .then(() => {
-          addTaskItem()
-      })
-    }
+      ).then(response => response.json())
+      .then((data) => addTaskItem(data))}
   
     return (
-      <form>
-        <label>
-          Task name:
-          <input onChange={event => setText(event.target.value)} type="text" name="text" />
-        </label>
-        <input type="submit" value="Add" onClick={createTask}/>
-      </form>
+      <>
+        <input id="addTaskText" style={{marginBottom: "1rem", fontSize:"25px", width: "70%", height: "50px"}} onChange={event => setText(event.target.value)} type="text" name="text" placeholder='Task name'/>
+        <button id="addTaskButton" style={{marginLeft: "1rem", fontSize:"25px", width: "10%", height: "60px"}} onClick={createTask}>Add</button>
+      </>
     );
 };
 
