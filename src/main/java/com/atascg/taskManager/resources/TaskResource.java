@@ -44,19 +44,11 @@ public class TaskResource {
     @POST
     @Path("/create/{text}")
     @UnitOfWork
-    public void createTask(@PathParam("text") String text) {
+    public Task createTask(@PathParam("text") String text) {
         Task task = new Task();
         task.setText(text);
         task.setCompleted(false);
         taskDAO.save(task);
+        return task;
     }
-
-//    @GET
-//    @Timed
-//    @Path("/retrieve")
-//    public Saying sayHello(@QueryParam("name") String name) {
-//        System.out.println("asd");
-//        final String value = String.format(template, name);
-//        return new Saying(counter.incrementAndGet(), value);
-//    }
 }
