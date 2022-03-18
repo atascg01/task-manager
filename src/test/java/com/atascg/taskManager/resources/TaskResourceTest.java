@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -21,12 +23,15 @@ class TaskResourceTest {
     private static final ResourceExtension EXT = ResourceExtension.builder()
             .addResource(new TaskResource(DAO))
             .build();
+
     private Task task;
+    int taskId = 1;
 
     @BeforeEach
     void setup() {
         task = new Task();
-        task.setId(1L);
+        task.setText("Example task");
+        task.setId(taskId);
     }
 
     @AfterEach
@@ -36,12 +41,29 @@ class TaskResourceTest {
 
     @Test
     void getTaskList() {
-
-        when(DAO.findAll()).thenReturn(List.of(new Task(), new Task()));
+        when(DAO.findAll()).thenReturn(List.of(task, task));
         List<Task> taskList = EXT.target("/api/v1/tasks/all").request().get(List.class);
 
         Assertions.assertEquals(taskList.size(), 2);
         verify(DAO).findAll();
+    }
+
+    @Test
+    void deleteTask() {
+        when(DAO.deleteById(taskId)).thenReturn(task);
+        Task requestTask = EXT.target("/api/v1/tasks/delete/1").request().delete(Task.class);
+
+        Assertions.assertEquals(requestTask, task);
+        verify(DAO).deleteById(taskId);
+    }
+
+    @Test
+    void createTask() {
+
+        Task requestTask = EXT.target("/api/v1/tasks/create/Example task").request().post(Entity.entity(task, MediaType.APPLICATION_JSON), Task.class);
+
+        Assertions.assertEquals(requestTask.getText(), task.getText());
+        verify(DAO).save(requestTask);
     }
 
 

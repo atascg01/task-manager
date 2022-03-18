@@ -5,7 +5,6 @@ import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
-import java.util.Optional;
 
 public class TaskDAO extends AbstractDAO<Task> {
 
@@ -17,22 +16,25 @@ public class TaskDAO extends AbstractDAO<Task> {
         return list(namedTypedQuery("task.findAll"));
     }
 
-    public Optional<Task> findById(long id) {
-        return Optional.ofNullable(get(id));
+    public Task findById(long id) {
+        return get(id);
     }
 
-    public void save(Task task) {
+    public Task save(Task task) {
         currentSession().save(task);
+        return task;
     }
 
-    public void updateById(long id, Task task) {
-        Task databaseTask = findById(id).orElse(new Task());
+    public Task updateById(long id, Task task) {
+        Task databaseTask = findById(id);
         databaseTask.setText(task.getText());
         databaseTask.setCompleted(task.isCompleted());
+        return databaseTask;
     }
 
-    public void deleteById(long id) {
-        Task task = findById(id).orElse(null);
+    public Task deleteById(long id) {
+        Task task = findById(id);
         currentSession().delete(task);
+        return task;
     }
 }

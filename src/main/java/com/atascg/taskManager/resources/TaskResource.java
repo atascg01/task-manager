@@ -30,15 +30,15 @@ public class TaskResource {
     @PUT
     @Path("/update/{id}")
     @UnitOfWork
-    public void updateTask(@PathParam("id") long id, Task task) {
-        taskDAO.updateById(id, task);
+    public Task updateTask(@PathParam("id") long id, Task task) {
+        return taskDAO.updateById(id, task);
     }
 
     @DELETE
     @Path("/delete/{id}")
     @UnitOfWork
-    public void deleteTaskById(@PathParam("id") long id) {
-        taskDAO.deleteById(id);
+    public Task deleteTaskById(@PathParam("id") long id) {
+        return taskDAO.deleteById(id);
     }
 
     @POST
