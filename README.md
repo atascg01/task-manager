@@ -5,14 +5,6 @@
 Task Manager is an application for managing tasks or todos developed with Dropwizard (Java framework) for the backend
 and React for the frontend.
 
-## Backend
-
-Backend source code is located under `src/main/java`.
-
-## Frontend
-
-Frontend application source code is located under `src/main/frontend` directory
-
 ## Testing report
 
 Task manager uses Jacoco for generating a test report by executing jacoco maven goal: report
@@ -23,3 +15,6 @@ Task manager uses Jacoco for generating a test report by executing jacoco maven 
 command `$ java -jar /path/to/jar server application.yml`.
 
 There are some environment variables that the application needs, such as `DATABASE_USERNAME` and `DATABASE_PASSWORD`.
+
+docker run -d -it --network app_network -e MYSQL_ROOT_PASSWORD=taskManager -e MYSQL_DATABASE=taskManager --name mysql_name mysql
+docker run -d -it -e DATABASE_USERNAME=taskManager -e DATABASE_PASSWORD=taskManager -p 8080:8080 --network app_network task_manager:dev
