@@ -1,6 +1,6 @@
 # Task Manager
 
-![img.png](src/main/resources/img.png)
+![img.png](resources/taskManager.png)
 
 Task Manager is an application for managing tasks or todos developed with Dropwizard (Java framework) for the backend
 and React for the frontend.
