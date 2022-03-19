@@ -13,6 +13,10 @@ Backend source code is located under `src/main/java`.
 
 Frontend application source code is located under `src/main/frontend` directory
 
+## Testing report
+
+Task manager uses Jacoco for generating a test report by executing jacoco maven goal: report
+
 ## Packaging
 
 `mvn package` generates a `task-manager-1.0-SNAPSH.jar` that can be executed with
