@@ -16,7 +16,8 @@ const TaskForm = (props) => {
             }
         }
       ).then(response => response.json())
-      .then((data) => addTaskItem(data))}
+      .then((data) => addTaskItem(data))
+    }
   
     return (
       <>
