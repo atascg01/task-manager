@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    container_name: docker-database-container
+    image: atascg01/task-manager-database:latest
+    networks:
+      - task-network
+  backend:
+    container_name: backend
+    image: atascg01/task-manager:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "db"
+    networks:
+      - task-network
+  frontend:
+    container_name: frontend
+    image: atascg01/task-manager-frontend:latest
+    working_dir: /app
+    ports:
+      - "3001:3000"
+    depends_on:
+      - "backend"
+    networks:
+      - task-network
+
+networks:
+  task-network:
+    driver: bridge

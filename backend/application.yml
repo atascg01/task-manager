@@ -2,7 +2,7 @@ database:
   driverClass: com.mysql.cj.jdbc.Driver
   user: ${DATABASE_USERNAME}
   password: ${DATABASE_PASSWORD}
-  url: jdbc:mysql://mysql:3306/task_manager?
+  url: jdbc:mysql://docker-database-container:3306/task_manager
   properties:
     hibernate.dialect: org.hibernate.dialect.MySQLDialect
   validationQuery: "/* MyApplication Health Check */ SELECT 1"
