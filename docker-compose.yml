@@ -3,6 +3,7 @@ services:
   db:
     container_name: docker-database-container
     image: atascg01/task-manager-database:latest
+    restart: always
     networks:
       - task-network
   backend:
@@ -10,6 +11,7 @@ services:
     image: atascg01/task-manager:latest
     ports:
       - "8080:8080"
+    restart: always
     depends_on:
       - "db"
     networks:
