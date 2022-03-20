@@ -5,6 +5,13 @@
 Task Manager is an application for managing tasks or todos developed with Dropwizard (Java framework) for the backend
 and React for the frontend.
 
+## Running
+
+`$ docker-compose up` will deploy following services:
+- MySQL database with docker image ->https://hub.docker.com/repository/docker/atascg01/task-manager-database/general
+- Dropwizard backend application with docker image -> https://hub.docker.com/repository/docker/atascg01/task-manager
+- React frontend application with docker image -> https://hub.docker.com/repository/docker/atascg01/task-manager-frontend
+
 ## Testing report
 
 Task manager uses Jacoco for generating a test report by executing jacoco maven goal: report
