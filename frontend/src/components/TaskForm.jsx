@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Config from "./config.json";
+import Config from "../config.json";
 const TaskForm = (props) => {
 
     const {addTaskItem} = props;

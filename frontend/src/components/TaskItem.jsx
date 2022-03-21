@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Config from "./config.json";
+import Config from "../config.json";
 
 const TaskItem = (props) => {
 
