@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import TaskItem from './components/TaskItem';
 import TaskForm from './components/TaskForm';
+import Config from "./config.json";
 
 function App() {
 
   const [tasks, setTasks] = useState(null);
-
+  const baseUrl = Config.BASE_URL;
   useEffect(() => {
     if(!tasks){
-      fetch("http://localhost:8080/api/v1/tasks/all")
+      fetch(`http://${baseUrl}:8080/api/v1/tasks/all`)
       .then(response => response.json())
       .then(data => setTasks(data))
     }

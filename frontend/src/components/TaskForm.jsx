@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-
+import Config from "./config.json";
 const TaskForm = (props) => {
 
     const {addTaskItem} = props;
     const [text, setText] = useState('')
   
     const createTask = () => {
- 
-      fetch(`http://localhost:8080/api/v1/tasks/create/${text}`,
+      const baseUrl = Config.BASE_URL;
+      fetch(`http://${baseUrl}:8080/api/v1/tasks/create/${text}`,
         {
             method : "POST",
             body: JSON.stringify(text),
