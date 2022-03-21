@@ -23,8 +23,7 @@ located in the Dockerfile of each image.
 If you want to use your own image, configure it also in `docker.compose.yml` by replacing `db`, `frontend` and/or `backend`service's
 `images` from `atascg01/task-manager-database:latest` to your own images.
 
-For instance, you may want to build your own image configuring the BASE_URL, which is currently pointing to the oracle instance
-located under frontend/src/config.json
+For instance, you may want to build your own image configuring the BASE_URL located under frontend/src/config.json
 
 ## Live server
 There is a live server running in an Oracle-Linux-8.5 available here:
