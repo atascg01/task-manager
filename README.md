@@ -9,18 +9,18 @@ and React for the frontend.
 
 ### Using built images
 
-`$ docker-compose up` will deploy following services:
+`$ docker-compose up -d` will deploy following services:
 - MySQL database with docker image ->https://hub.docker.com/repository/docker/atascg01/task-manager-database/general
 - Dropwizard backend application with docker image -> https://hub.docker.com/repository/docker/atascg01/task-manager
 - React frontend application with docker image -> https://hub.docker.com/repository/docker/atascg01/task-manager-frontend
 
 ### Building your own images
 
-All 3 images can be builded your own way by running the command:
+All 3 images can be built your own way by running the command:
 `$ docker build -t container_name .`
 located in the Dockerfile of each image.
 
-If you want to use your own image, configure it also in `docker.compose.yml` by replacing `db`, `frontend` and/or `backend`
+If you want to use your own image, configure it also in `docker.compose.yml` by replacing `db`, `frontend` and/or `backend`service's
 `images` from `atascg01/task-manager-database:latest` to your own images.
 
 For instance, you may want to build your own image configuring the BASE_URL, which is currently pointing to the oracle instance
